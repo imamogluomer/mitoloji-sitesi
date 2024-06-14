@@ -1,0 +1,593 @@
+@import url(https://fonts.google.com/specimen/Madimi+One);
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+
+
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: url("https://www.transparenttextures.com/patterns/escheresque.png");
+
+}
+
+.bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 5px;
+    color: white;
+    text-align: center;
+    z-index: 1;
+}
+
+.background-with-logo {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('images/backroundLogo.png');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+ 
+}
+
+.background-with-logo-jelavic {
+    position: sticky;
+    top: 100px;
+    width: 80vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('images/jelavic.png');
+    background-size: contain;
+    /* Resmin ekranı tamamen kaplamaması, ancak boyutlarına oranlı olarak sığması için */
+    background-position: left;
+    /* Resmin ekranın sol tarafında kalması için */
+    background-repeat: no-repeat;
+    z-index: 0;
+
+
+}
+
+.background-with-logo-adler {
+    position: sticky;
+    top: 100px;
+    width: 80vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('images/adler.png');
+    background-size: contain;
+    /* Resmin ekranı tamamen kaplamaması, ancak boyutlarına oranlı olarak sığması için */
+    background-position: center;
+    /* Resmin ekranın sol tarafında kalması için */
+    background-repeat: no-repeat;
+    z-index: 0;
+
+}
+
+.background-with-logo-esdeath {
+    position: sticky;
+    top: 100px;
+    width: 80vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('images/esdeath.png');
+    background-size: contain;
+    /* Resmin ekranı tamamen kaplamaması, ancak boyutlarına oranlı olarak sığması için */
+    background-position: left;
+    /* Resmin ekranın sol tarafında kalması için */
+    background-repeat: no-repeat;
+
+
+}
+
+.background-with-logo-juuzo {
+    position: sticky;
+    top: 100px;
+    width: 80vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('images/juuzo.png');
+    background-size: contain;
+    /* Resmin ekranı tamamen kaplamaması, ancak boyutlarına oranlı olarak sığması için */
+    background-position: left;
+    /* Resmin ekranın sol tarafında kalması için */
+    background-repeat: no-repeat;
+
+
+}
+
+.background-with-logo-karanomori {
+    position: sticky;
+    top: 100px;
+    width: 80vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('images/karanomori.png');
+    background-size: contain;
+     background-position: right;
+    background-repeat: no-repeat;
+
+
+}
+
+.background-with-logo-cute {
+    position: sticky;
+    top: 100px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-image: url('images/cute.png');
+    background-size: contain;
+    background-position: left;
+    background-repeat: no-repeat;
+    opacity: 60%;
+
+
+}
+
+
+.opaque-responsive-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.4;
+    max-width: 30%;
+    max-height: 30vh;
+    max-width: 100%;
+    height: auto;
+    width: auto;
+
+}
+
+/* navbar css */
+.navbar {
+    background-color: rgba(231, 165, 215, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: inset;
+    background-color: #b981815b;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+
+}
+
+.navdiv {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar1 {
+    background-color: rgba(231, 165, 215, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: inset;
+    background-color: #b6f8ff2a;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    
+}
+
+.navbar1 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar2 {
+    background-color: rgba(231, 165, 215, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: inset;
+    background-color: #f5f18a40;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+}
+
+.navbar2 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar3 {
+    background-color: rgba(231, 165, 215, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: inset;
+    background-color: #54545443;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+}
+
+.navbar3 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar4 {
+    background-color: rgba(231, 165, 215, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: inset;
+    background-color: #011c6231;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+}
+
+.navbar4 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar5 {
+    background-color: rgba(231, 165, 215, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: inset;
+    background-color: #071a7b3c;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+}
+
+.navbar5 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.navbar6 {
+    background-color: rgba(231, 165, 215, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: inset;
+    background-color: #30053f52;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+}
+
+.navbar6 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+
+li {
+    list-style: none;
+    display: inline-block;
+    margin: 30px;
+}
+
+li a {
+
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    font-weight: normal;
+    margin-right: 25px;
+    font-family: 'Madimi One', cursive;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.27);
+
+
+}
+
+/* bodys css */
+
+body {
+    overflow: hidden;
+}
+
+.indexBody {
+
+    background: linear-gradient(to top right, #fae1e5, #f9b5d7);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+
+}
+
+.jelavic {
+    background: linear-gradient(to top right, #b0f6ff, #00e1ff);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    
+}
+
+.adler {
+    background: linear-gradient(to top right, #f5f18a, #c2bb01);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.esdeath {
+    background: linear-gradient(to top right, #545454, #181818);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.juuzo {
+    background: linear-gradient(to top right, #434cd2, #010863);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.karanomori {
+    background: linear-gradient(to top right, #d16969, #a70000);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.cute {
+    background: linear-gradient(to top right, #30053f, #180220);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+.container-index {
+
+
+   
+
+
+}
+
+
+.giris-container-index {
+
+   
+}
+.container-jelavic {
+
+
+    border: 0px solid #333;
+    padding: 0px;
+    margin: 0px;
+    text-align: justify;
+    z-index: 1;
+
+
+
+}
+
+
+.giris-container-jelavic {
+
+    flex: 0 0 calc(50% - 20px);
+    max-width: 400px;
+    padding: 0px;
+    border: 0px solid #0175aa63;
+    margin: 120px;
+    box-sizing: border-box;
+    text-align: center;
+    float: right;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    background-color: #0f031e2e;
+    border-radius: 10%;
+    color: #93f3fc;
+}
+
+.container-adler {
+
+    border: 2px solid #333;
+    padding: 0px;
+    margin: 0px;
+    text-align: justify;
+    z-index: 1;
+
+
+}
+
+
+.giris-container-adler {
+    flex: 0 0 calc(50% - 20px);
+    max-width: 400px;
+    padding: 0px;
+    border: 0px solid #0175aa63;
+    margin: 150px 0 0 0px;
+    box-sizing: border-box;
+    text-align: center;
+    float: left;
+    font-weight: 600;
+    background-color: #0f031e2e;
+    border-radius: 10%;
+    color: #f5fdb8;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+
+
+
+}
+
+.container-esdeath {
+
+    border: 2px solid #333;
+    padding: 0px;
+    margin: 0px;
+    text-align: justify;
+    z-index: 1;
+
+
+}
+
+
+.giris-container-esdeath {
+    flex: 0 0 calc(50% - 20px);
+    max-width: 400px;
+    padding: 0px;
+    border: 0px solid #0175aa63;
+    margin: 150px 0 0 0px;
+    box-sizing: border-box;
+    text-align: center;
+    float: right;
+    font-weight: 600;
+    background-color: #0f031e2e;
+    border-radius: 10%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    color: #a4a4a4;
+
+
+}
+
+.container-juuzo {
+
+    border: 2px solid #333;
+    padding: 0px;
+    margin: 0px;
+    text-align: justify;
+    z-index: 1;
+
+
+}
+
+
+.giris-container-juuzo {
+    flex: 0 0 calc(50% - 20px);
+    max-width: 400px;
+    padding: 0px;
+    border: 0px solid #0175aa63;
+    margin: 150px 0 0 0px;
+    box-sizing: border-box;
+    text-align: center;
+    float: right;
+    font-weight: 600;
+    background-color: #0f031e2e;
+    border-radius: 10%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    color: #ad0505;
+
+}
+
+.container-karanomori {
+
+    border: 2px solid #333;
+    padding: 0px;
+    margin: 0px;
+    text-align: justify;
+    z-index: 1;
+
+}
+
+
+.giris-container-karanomori {
+    flex: 0 0 calc(50% - 20px);
+    max-width: 400px;
+    padding: 0px;
+    border: 0px solid #0175aa63;
+    margin: 150px 0 0 0px;
+    box-sizing: border-box;
+    text-align: center;
+    float: left;
+    font-weight: 600;
+    background-color: #0f031e2e;
+    border-radius: 10%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    color: #ebbcbc;
+
+}
+
+.container-cute {
+    border: 0px solid #333;
+    padding: 0px;
+    margin: 0px;
+    text-align: justify;
+    z-index: 1;
+    position: fixed;
+    top: 55%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+
+.giris-container-cute {
+    flex: 0 0 calc(50% - 20px);
+    max-width: 400px;
+    padding: 20px; /* İçeriğin kenarından biraz boşluk bırakmak için padding ekleyin */
+    border: 0px solid #0175aa63;
+    box-sizing: border-box;
+    text-align: center;
+    font-weight: 600;
+    background-color: #2c045d2d;
+    border-radius: 10%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    color: #ebbcbc;
+}
