@@ -349,7 +349,7 @@ body {
 }
 
 .jelavic {
-    background: linear-gradient(to top right, #49001f, #870039);
+    background: linear-gradient(to top right, #00fff9, #00837e);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
@@ -357,35 +357,35 @@ body {
 }
 
 .adler {
-    background: linear-gradient(to top right, #f5f18a, #c2bb01);
+    background: linear-gradient(to top right, #f5ba8a, #c86e1d);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
 }
 
 .esdeath {
-    background: linear-gradient(to top right, #545454, #181818);
+    background: linear-gradient(to top right, #ff0000, #6e0000);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
 }
 
 .juuzo {
-    background: linear-gradient(to top right, #434cd2, #010863);
+    background: linear-gradient(to top right, #9943d2, #4b007a);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
 }
 
 .karanomori {
-    background: linear-gradient(to top right, #d16969, #a70000);
+    background: linear-gradient(to top right, #69b5d1, #226f8c);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
 }
 
 .cute {
-    background: linear-gradient(to top right, #30053f, #180220);
+    background: linear-gradient(to top right, #21053f, #7f00e8);
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;

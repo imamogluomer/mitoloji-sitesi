@@ -27,12 +27,12 @@
         <div class="navdiv">
             <ul>
                 <li><a href="index.php">Home</a></li>
-                <li><a href="kayra.html">Kayra Han</a></li>
-                <li><a href="erlik.html">Erlik Han</a></li>
-                <li><a href="ulgen.html">Ülgen</a></li>
-                <li><a href="mergen.html">Mergen</a></li>
-                <li><a href="kizagan.html">Kızagan</a></li>
-                <li><a href="umay.html">Umay</a></li>
+                <li><a href="kayra.php">Kayra Han</a></li>
+                <li><a href="erlik.php">Erlik Han</a></li>
+                <li><a href="ulgen.php">Ülgen</a></li>
+                <li><a href="mergen.php">Mergen</a></li>
+                <li><a href="kizagan.php">Kızagan</a></li>
+                <li><a href="umay.php">Umay</a></li>
                 <li><a href="admin.php">Admin Panel</a></li>
 
             </ul>

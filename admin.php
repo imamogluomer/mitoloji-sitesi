@@ -12,52 +12,55 @@ if (!isset($_SESSION['loggedin']) || (time() - $_SESSION['timeout'] > 300)) {
     $_SESSION['timeout'] = time();
 }
 
-// İçerikleri getir
-$sql = "SELECT * FROM content";
-$result = $conn->query($sql);
+// Fonksiyonlarımızı ekleyelim
+function readHtmlFile($filename) {
+    $content = "";
+    if (file_exists($filename)) {
+        $content = file_get_contents($filename);
+    }
+    return $content;
+}
 
-// İçerik ekleme işlemi
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add'])) {
-    $title = $_POST['title'];
-    $body = $_POST['body'];
+function updateHtmlFile($filename, $content) {
+    if (file_exists($filename)) {
+        file_put_contents($filename, $content);
+        return true;
+    }
+    return false;
+}
 
-    $sql = "INSERT INTO content (title, body) VALUES ('$title', '$body')";
-    if ($conn->query($sql) === TRUE) {
+// Dosya güncelleme işlemi
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['updateFile'])) {
+    $filename = $_POST['filename'];
+    $content = $_POST['content'];
+
+    if (updateHtmlFile($filename, $content)) {
         header('Location: admin.php');
+        exit;
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Dosya güncellenemedi.";
     }
 }
 
-// İçerik güncelleme işlemi
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update'])) {
-    $id = $_POST['id'];
-    $title = $_POST['title'];
-    $body = $_POST['body'];
+// Tüm dosyaların listesini oluşturalım
+$htmlFiles = [
+    'erlik.php' => 'Erlik',
+    'kayra.php' => 'Kayra',
+    'kizagan.php' => 'Kizagan',
+    'mergen.php' => 'Mergen',
+    'ulgen.php' => 'Ulgen',
+    'umay.php' => 'Umay'
+];
 
-    $sql = "UPDATE content SET title='$title', body='$body' WHERE id='$id'";
-    if ($conn->query($sql) === TRUE) {
-        header('Location: admin.php');
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-}
+// Seçilen dosyanın içeriğini oku
+$selectedFile = isset($_GET['file']) ? $_GET['file'] : '';
+$fileContent = $selectedFile ? readHtmlFile($selectedFile) : '';
 
-// İçerik silme işlemi
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-
-    $sql = "DELETE FROM content WHERE id='$id'";
-    if ($conn->query($sql) === TRUE) {
-        header('Location: admin.php');
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -65,20 +68,19 @@ if (isset($_GET['delete'])) {
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
         }
 
         .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 80%;
             max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         h2, h3 {
@@ -87,139 +89,107 @@ if (isset($_GET['delete'])) {
         }
 
         form {
-            display: flex;
-            flex-direction: column;
             margin-bottom: 20px;
         }
 
-        input[type="text"], textarea {
+        select, textarea {
+            width: 100%;
             padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
         button {
+            display: block;
+            width: 100%;
             padding: 10px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #007bff;
+            color: #fff;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            align-self: center;
-            margin-top: 10px;
+            font-size: 16px;
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
         }
 
-        .home-button {
-            background-color: #2196F3;
+        .content {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
             margin-top: 20px;
         }
 
-        .home-button:hover {
-            background-color: #1976D2;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        .action-buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .action-buttons form {
-            display: inline;
-        }
-
-        .action-buttons a {
-            color: #d9534f;
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
             text-decoration: none;
-            margin-left: 10px;
         }
 
-        .action-buttons a:hover {
+        .home-link:hover {
             text-decoration: underline;
         }
 
         .logout {
-            align-self: flex-end;
+            text-align: center;
             margin-bottom: 20px;
         }
 
         .logout a {
             text-decoration: none;
-            color: #d9534f;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .logout a:hover {
-            text-decoration: underline;
+            background-color: #d32f2f;
         }
+
     </style>
 </head>
+
 <body>
 <div class="container">
-    <h2>Admin Panel</h2>
+    <h2>Admin Panel - HTML Dosyaları İçerik Düzenleme</h2>
     <div class="logout"><a href="logout.php">Logout</a></div>
-    <h3>Add New Content</h3>
-    <form method="post" action="">
-        Title: <input type="text" name="title" required><br>
-        Body: <textarea name="body" required></textarea><br>
-        <button type="submit" name="add">Add</button>
+
+    <form method="get" action="">
+        <label for="file">Düzenlenecek Dosyayı Seçin:</label>
+        <select name="file" id="file" onchange="this.form.submit()">
+            <option value="">Dosya Seçin</option>
+            <?php foreach ($htmlFiles as $file => $name): ?>
+                <option value="<?php echo $file; ?>" <?php echo ($selectedFile == $file) ? 'selected' : ''; ?>><?php echo $name; ?></option>
+            <?php endforeach; ?>
+        </select>
     </form>
-    <h3>All Content</h3>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Body</th>
-            <th>Created At</th>
-            <th>Action</th>
-        </tr>
-        <?php
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                echo "<tr>
-                        <td>" . $row["id"] . "</td>
-                        <td><input type='text' name='title' value='" . $row["title"] . "'></td>
-                        <td><textarea name='body'>" . $row["body"] . "</textarea></td>
-                        <td>" . $row["created_at"] . "</td>
-                        <td class='action-buttons'>
-                            <form method='post' action=''>
-                                <input type='hidden' name='id' value='" . $row["id"] . "'>
-                                <input type='hidden' name='title' value='" . $row["title"] . "'>
-                                <input type='hidden' name='body' value='" . $row["body"] . "'>
-                                <button type='submit' name='update'>Update</button>
-                            </form>
-                            <a href='admin.php?delete=" . $row["id"] . "'>Delete</a>
-                        </td>
-                      </tr>";
-            }
-        } else {
-            echo "<tr><td colspan='5'>No content found</td></tr>";
-        }
-        ?>
-    </table>
-    <button class="home-button" onclick="window.location.href='index.php'">Anasayfa</button>
+
+    <?php if ($selectedFile && $fileContent): ?>
+        <form method="post" action="">
+            <input type="hidden" name="filename" value="<?php echo $selectedFile; ?>">
+            <textarea name="content" rows="10"><?php echo htmlspecialchars($fileContent); ?></textarea><br>
+            <button type="submit" name="updateFile">Dosyayı Güncelle</button>
+        </form>
+        <div class="content">
+            <h3>Dosya İçeriği Önizleme:</h3>
+            <?php echo $fileContent; ?>
+        </div>
+    <?php endif; ?>
+
+    <a class="home-link" href="index.php">Anasayfa</a>
 </div>
 </body>
+
 </html>
